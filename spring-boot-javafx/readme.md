@@ -1,7 +1,7 @@
 Spring Boot Java FX integration example
 ======================================
 
-This example application demonstrates how to use Spring-Boot with JavaFX under Java 8. 
+Prototypic example on how one could use Spring-Boot with JavaFX under Java 8. 
 
 Run with ```mvn spring-boot:run```
 
