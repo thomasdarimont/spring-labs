@@ -46,7 +46,7 @@ public class SinChartComponent extends HBox {
 			data.add(new XYChart.Data<Number, Number>(x, 10 * Math.sin(x)));
 		}
 
-		LineChart<Number, Number> lineChart = new LineChart<Number, Number>(yAxis, xAxis);
+		LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
 		lineChart.setTitle("Sine function");
 		lineChart.getData().add(series);
 

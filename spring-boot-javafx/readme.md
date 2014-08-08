@@ -21,4 +21,4 @@ Run with ```mvn spring-boot:run```
 2014-08-08 11:39:45.779  INFO 65984 --- [       Thread-5] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@6ee12bac: startup date [Fri Aug 08 11:39:42 CEST 2014]; root of context hierarchy
 2014-08-08 11:39:45.779  INFO 65984 --- [       Thread-5] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
 ```
-![UI in Action](example.png "UI in Action")
+![UI in Action](example-1.png "UI in Action")

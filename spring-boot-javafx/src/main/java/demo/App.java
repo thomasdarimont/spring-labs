@@ -38,6 +38,9 @@ import demo.components.MainLayout;
 @EnableAutoConfiguration
 public class App extends Application {
 
+	/**
+	 *  Note that this is configured in application.properties
+	 */
 	@Value("${app.ui.title:Example App}")
 	private String windowTitle;
 
