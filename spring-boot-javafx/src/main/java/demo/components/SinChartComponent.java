@@ -15,13 +15,13 @@
  */
 package demo.components;
 
-import org.springframework.stereotype.Component;
-
 import javafx.collections.ObservableList;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.HBox;
+
+import org.springframework.stereotype.Component;
 
 /**
  * @author Thomas Darimont

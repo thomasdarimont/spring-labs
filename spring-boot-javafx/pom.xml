@@ -6,16 +6,15 @@
 	<groupId>org.demo</groupId>
 	<artifactId>spring-boot-javafx-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+	<packaging>jar</packaging>
 
-	<name>spring-boot-javafx-demo</name>
 	<description>Demo project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.1.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>1.1.8.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<dependencies>
@@ -27,10 +26,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.amqp</groupId>
-			<artifactId>spring-erlang</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -47,6 +42,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>
 
+		<finalName>spring-boot-javafx-demo</finalName>
+	</build>
 </project>

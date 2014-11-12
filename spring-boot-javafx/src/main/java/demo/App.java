@@ -15,48 +15,29 @@
  */
 package demo;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import demo.components.MainLayout;
 
 /**
  * @author Thomas Darimont
  */
-@Configuration
-@ComponentScan
-@EnableAutoConfiguration
-public class App extends Application {
+@Import(AppConfig.class)
+public class App extends AbstractJavaFxApplicationSupport {
 
 	/**
-	 *  Note that this is configured in application.properties
+	 * Note that this is configured in application.properties
 	 */
-	@Value("${app.ui.title:Example App}")
+	@Value("${app.ui.title:Example App}")//
 	private String windowTitle;
 
-	@Autowired
+	@Autowired//
 	private MainLayout mainLayout;
-
-	public static void main(String[] args) {
-		SpringApplication.run(App.class, args);
-	}
-
-	@PostConstruct
-	public void startApp() {
-
-		ApplicationWrapper.delegate = this;
-		Application.launch(ApplicationWrapper.class);
-	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -67,4 +48,9 @@ public class App extends Application {
 		stage.centerOnScreen();
 		stage.show();
 	}
+
+	public static void main(String[] args) {
+		launchApp(App.class, args);
+	}
+
 }

@@ -24,24 +24,24 @@ import org.springframework.stereotype.Component;
  * @author Thomas Darimont
  */
 @Component
-public class MainLayout extends GridPane{
-	
+public class MainLayout extends GridPane {
+
 	private final HelloWorldComponent helloWorldComponent;
-		
+
 	private final SinChartComponent sinChartComponent;
 
 	@Autowired
 	public MainLayout(HelloWorldComponent helloWorldComponent, SinChartComponent sinChartComponent) {
-		
+
 		this.helloWorldComponent = helloWorldComponent;
 		this.sinChartComponent = sinChartComponent;
-		
+
 		initComponent();
 	}
 
 	private void initComponent() {
-		
-		add(this.helloWorldComponent,0,0);
-		add(this.sinChartComponent,0,1);
+
+		add(this.helloWorldComponent, 0, 0);
+		add(this.sinChartComponent, 0, 1);
 	}
 }
