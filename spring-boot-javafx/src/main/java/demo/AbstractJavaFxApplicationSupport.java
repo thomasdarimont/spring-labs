@@ -1,13 +1,10 @@
 package demo;
 
 import javafx.application.Application;
-
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
-
-import com.sun.xml.internal.ws.util.StringUtils;
 
 /**
  * @author Thomas Darimont
