@@ -15,7 +15,12 @@
  */
 package demo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javafx.application.Application;
+
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -32,13 +37,20 @@ public abstract class AbstractJavaFxApplicationSupport extends Application {
 
 	public AbstractJavaFxApplicationSupport() {
 		
-		Import configClass = getClass().getAnnotation(Import.class);
-		Class<?>[] configClasses = configClass.value();
-
+		Class<?>[] configClasses = getConfigClasses().stream().toArray(Class[]::new);
+		
 		applicationContext = SpringApplication.run(configClasses, savedArgs);
+		applicationContext.getAutowireCapableBeanFactory().autowireBean(this);
+	}
 
-		AutowireCapableBeanFactory bf = applicationContext.getAutowireCapableBeanFactory();
-		bf.autowireBean(this);
+	protected List<Class<?>> getConfigClasses() {
+		
+		List<Class<?>> classes = new ArrayList<Class<?>>();
+		
+		Import configClass = getClass().getAnnotation(Import.class);
+		classes.addAll(Arrays.asList(configClass.value()));
+		
+		return classes;
 	}
 
 	@Override
