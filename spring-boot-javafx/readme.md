@@ -7,6 +7,13 @@ Run with ```mvn spring-boot:run```
 or
 Run with ```java -jar target/spring-boot-javafx-demo.jar```
 
+If you want to use a custom JavaFX preloader you can specify it via the `-Djavafx.preloader` system property.
+
+E.g.:
+``java -jar -Djavafx.preloader=demo.AppPreloader target/spring-boot-javafx-demo.jar``
+
+Example log
+
 ```
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \

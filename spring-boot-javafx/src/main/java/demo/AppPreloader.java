@@ -17,43 +17,33 @@ package demo;
 
 import javafx.application.Preloader;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressIndicator;
 import javafx.stage.Stage;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Import;
-
-import demo.components.MainLayout;
+import javafx.stage.StageStyle;
 
 /**
+ * @author Tommy Ziegler
  * @author Thomas Darimont
  */
-@Import(AppConfig.class)
-public class App extends AbstractJavaFxApplicationSupport {
+public class AppPreloader extends Preloader {
 
-	/**
-	 * Note that this is configured in application.properties
-	 */
-	@Value("${app.ui.title:Example App}")//
-	private String windowTitle;
+	private Stage stage;
 
-	@Autowired//
-	private MainLayout mainLayout;
-
-	@Override
 	public void start(Stage stage) throws Exception {
 
-		notifyPreloader(new Preloader.StateChangeNotification(Preloader.StateChangeNotification.Type.BEFORE_START));
+		this.stage = stage;
 
-		stage.setTitle(windowTitle);
-		stage.setScene(new Scene(mainLayout));
-		stage.setResizable(true);
-		stage.centerOnScreen();
+		Scene scene = new Scene(new ProgressIndicator(-1), 100, 100);
+		stage.initStyle(StageStyle.TRANSPARENT);
+		stage.setScene(scene);
 		stage.show();
 	}
 
-	public static void main(String[] args) {
-		launchApp(App.class, args);
-	}
+	@Override
+	public void handleApplicationNotification(PreloaderNotification pn) {
 
+		if (pn instanceof StateChangeNotification) {
+			stage.hide();
+		}
+	}
 }
