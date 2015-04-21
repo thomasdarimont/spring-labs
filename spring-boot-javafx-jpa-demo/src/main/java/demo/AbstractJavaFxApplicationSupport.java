@@ -15,14 +15,10 @@
  */
 package demo;
 
-import java.util.Arrays;
-import java.util.List;
-
 import javafx.application.Application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Import;
 
 /**
  * @author Thomas Darimont
@@ -35,12 +31,8 @@ public abstract class AbstractJavaFxApplicationSupport extends Application {
 
 	public AbstractJavaFxApplicationSupport() {
 
-		applicationContext = SpringApplication.run(getConfigClasses().toArray(), savedArgs);
+		applicationContext = SpringApplication.run(getClass(), savedArgs);
 		applicationContext.getAutowireCapableBeanFactory().autowireBean(this);
-	}
-
-	protected List<Class<?>> getConfigClasses() {
-		return Arrays.asList(getClass().getAnnotation(Import.class).value());
 	}
 
 	@Override
