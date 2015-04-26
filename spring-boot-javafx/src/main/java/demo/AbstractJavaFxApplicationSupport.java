@@ -15,16 +15,10 @@
  */
 package demo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import javafx.application.Application;
 
-import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Import;
 
 /**
  * @author Thomas Darimont
@@ -33,35 +27,23 @@ public abstract class AbstractJavaFxApplicationSupport extends Application {
 
 	private static String[] savedArgs;
 
-	private final ConfigurableApplicationContext applicationContext;
+	private ConfigurableApplicationContext applicationContext;
 
-	public AbstractJavaFxApplicationSupport() {
-		
-		Class<?>[] configClasses = getConfigClasses().stream().toArray(Class[]::new);
-		
-		applicationContext = SpringApplication.run(configClasses, savedArgs);
+	@Override
+	public void init() throws Exception {
+		applicationContext = SpringApplication.run(getClass(), savedArgs);
 		applicationContext.getAutowireCapableBeanFactory().autowireBean(this);
-	}
-
-	protected List<Class<?>> getConfigClasses() {
-		
-		List<Class<?>> classes = new ArrayList<Class<?>>();
-		
-		Import configClass = getClass().getAnnotation(Import.class);
-		classes.addAll(Arrays.asList(configClass.value()));
-		
-		return classes;
 	}
 
 	@Override
 	public void stop() throws Exception {
-		
+
 		super.stop();
 		applicationContext.close();
 	}
 
 	protected static void launchApp(Class<? extends AbstractJavaFxApplicationSupport> appClass, String[] args) {
-		
+
 		AbstractJavaFxApplicationSupport.savedArgs = args;
 		Application.launch(appClass, args);
 	}

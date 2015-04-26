@@ -21,14 +21,16 @@ import javafx.stage.Stage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Lazy;
 
 import demo.components.MainLayout;
 
 /**
  * @author Thomas Darimont
  */
-@Import(AppConfig.class)
+@Lazy
+@SpringBootApplication
 public class App extends AbstractJavaFxApplicationSupport {
 
 	/**
