@@ -57,6 +57,33 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+
+
+		<resources>
+		<!-- copy fxml and css resources -->
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.fxml</include>
+					<include>**/*.css</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/test/java</directory>
+				<includes>
+					<include>**/*.fxml</include>
+					<include>**/*.css</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 
 </project>
