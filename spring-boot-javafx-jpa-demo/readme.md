@@ -7,7 +7,10 @@ Run with ```mvn spring-boot:run```
 or
 Run with ```java -jar target/spring-boot-javafx-jpa-demo-0.0.1-SNAPSHOT.jar```
 
-Example log
+Note that the link between `demo.projects.ui.ProjectsPresenter` and `demo.projects.ui.ProjectsView` isestablished via `fx:controller="demo.projects.ui.ProjectsPresenter"` in the `src/main/java/demo/projects/ui/projects.fxml`
+
+
+Example log:
 
 ```
   .   ____          _            __ _ _
