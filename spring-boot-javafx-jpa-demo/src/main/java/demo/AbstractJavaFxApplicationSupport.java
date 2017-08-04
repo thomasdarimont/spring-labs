@@ -23,6 +23,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 /**
  * @author Thomas Darimont
  */
+@SuppressWarnings("restriction")
 public abstract class AbstractJavaFxApplicationSupport extends Application {
 
 	private static String[] savedArgs;
@@ -42,7 +43,9 @@ public abstract class AbstractJavaFxApplicationSupport extends Application {
 		applicationContext.close();
 	}
 
-	protected static void launchApp(Class<? extends AbstractJavaFxApplicationSupport> appClass, String[] args) {
+	protected static void launchApp(
+			Class<? extends AbstractJavaFxApplicationSupport> appClass,
+			String[] args) {
 
 		AbstractJavaFxApplicationSupport.savedArgs = args;
 		Application.launch(appClass, args);

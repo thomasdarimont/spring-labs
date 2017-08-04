@@ -15,6 +15,7 @@
  */
 package demo;
 
+import javafx.application.Preloader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -30,18 +31,23 @@ import demo.projects.ui.ProjectsView;
  */
 @Lazy
 @SpringBootApplication
+@SuppressWarnings("restriction")
 public class App extends AbstractJavaFxApplicationSupport {
 
 	/**
 	 * Note that this is configured in application.properties
 	 */
-	@Value("${app.ui.title:Example App}")//
+	@Value("${app.ui.title:Example App}")
+	//
 	private String windowTitle;
 
-	@Autowired ProjectsView projectsView;
+	@Autowired
+	private ProjectsView projectsView;
 
 	@Override
 	public void start(Stage stage) throws Exception {
+
+		notifyPreloader(new Preloader.StateChangeNotification(Preloader.StateChangeNotification.Type.BEFORE_START));
 
 		stage.setTitle(windowTitle);
 		stage.setScene(new Scene(projectsView.getView()));
