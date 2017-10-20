@@ -33,18 +33,18 @@ import javax.persistence.PostLoad;
 @Entity
 public class Task {
 
-	@Id @GeneratedValue//
+	@Id @GeneratedValue
 	private Long id;
 
 	private String name;
 
 	private String description;
 
-	@Enumerated(EnumType.STRING)//
+	@Enumerated(EnumType.STRING)
 	private Status status;
 
-	@ManyToOne//
-	@JoinColumn(name = "project_id")//
+	@ManyToOne
+	@JoinColumn(name = "project_id")
 	private Project project;
 
 	@PostLoad

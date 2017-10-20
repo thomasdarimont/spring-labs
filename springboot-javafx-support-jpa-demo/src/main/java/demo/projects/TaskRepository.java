@@ -25,5 +25,4 @@ import java.util.List;
 interface TaskRepository extends JpaRepository<Task, Long> {
 
 	List<Task> findByProject(Project project);
-
 }

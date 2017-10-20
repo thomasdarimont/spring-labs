@@ -25,6 +25,7 @@ import java.util.List;
  * @author Thomas Darimont
  */
 @Service
+@Transactional(readOnly = false)
 @RequiredArgsConstructor
 class ProjectServiceImpl implements ProjectService {
 

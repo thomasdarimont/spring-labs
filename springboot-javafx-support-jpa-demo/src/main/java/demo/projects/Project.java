@@ -34,13 +34,13 @@ import java.util.List;
 @NoArgsConstructor
 public class Project {
 
-	@Id @GeneratedValue//
+	@Id @GeneratedValue
 	private Long id;
 
 	private String name;
 	private String description;
 
-	@OneToMany(mappedBy = "project")//
+	@OneToMany(mappedBy = "project")
 	private List<Task> tasks;
 
 	public Project(String name) {
