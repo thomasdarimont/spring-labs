@@ -62,10 +62,10 @@ public class ProjectsPresenter {
 
 	private void configureTasksTable() {
 
-		taskNameColumn.setCellValueFactory(new PropertyValueFactory<Task, String>("name"));
-		taskDescriptionColumn.setCellValueFactory(new PropertyValueFactory<Task, String>("description"));
+		taskNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+		taskDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-		taskStatusColumn.setCellValueFactory(new PropertyValueFactory<Task, Task.Status>("status"));
+		taskStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 		taskStatusColumn.setCellFactory(ComboBoxTableCell.forTableColumn(Task.Status.values()));
 
 		taskStatusColumn.setOnEditCommit(edit -> {
@@ -76,8 +76,8 @@ public class ProjectsPresenter {
 
 	private void configureProjectsTable() {
 
-		projectNameColumn.setCellValueFactory(new PropertyValueFactory<Project, String>("name"));
-		projectDescriptionColumn.setCellValueFactory(new PropertyValueFactory<Project, String>("description"));
+		projectNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+		projectDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
 		ChangeListener<Project> projectSelectionChanged = (observable, oldValue, newValue) -> {
 			tasksTable.getItems().clear();

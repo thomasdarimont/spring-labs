@@ -25,10 +25,12 @@ import javafx.stage.StageStyle;
  * @author Tommy Ziegler
  * @author Thomas Darimont
  */
+@SuppressWarnings("restriction")
 public class AppPreloader extends Preloader {
 
 	private Stage stage;
 
+	@Override
 	public void start(Stage stage) throws Exception {
 
 		this.stage = stage;

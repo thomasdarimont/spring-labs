@@ -15,39 +15,37 @@
  */
 package demo.projects;
 
-import java.util.List;
-
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author Thomas Darimont
  */
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 class ProjectServiceImpl implements ProjectService {
 
-	private final ProjectRepository projectRepository;
-	private final TaskRepository taskRepository;
+  private final ProjectRepository projectRepository;
+  private final TaskRepository taskRepository;
 
-	public List<Project> findAllProjects() {
-		return projectRepository.findAll();
-	}
+  public List<Project> findAllProjects() {
+    return projectRepository.findAll();
+  }
 
-	public List<Task> findAllTasksByProject(Project project) {
-		return taskRepository.findByProject(project);
-	}
+  public List<Task> findAllTasksByProject(Project project) {
+    return taskRepository.findByProject(project);
+  }
 
-	@Transactional
-	public Task save(Task task) {
-		return taskRepository.save(task);
-	}
+  @Transactional
+  public Task save(Task task) {
+    return taskRepository.save(task);
+  }
 
-	@Transactional
-	public Project save(Project project) {
-		return projectRepository.save(project);
-	}
+  @Transactional
+  public Project save(Project project) {
+    return projectRepository.save(project);
+  }
 }

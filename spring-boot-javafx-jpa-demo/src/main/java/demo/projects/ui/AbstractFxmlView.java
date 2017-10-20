@@ -15,15 +15,6 @@
  */
 package demo.projects.ui;
 
-import static java.util.ResourceBundle.*;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
-
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -33,10 +24,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
+
+import static java.util.ResourceBundle.getBundle;
 
 /**
  * This class is derived from Adam Bien's <a href="http://afterburner.adam-bien.com/">afterburner.fx</a> project.
@@ -49,13 +48,20 @@ import org.springframework.context.ApplicationContextAware;
  */
 public abstract class AbstractFxmlView implements ApplicationContextAware {
 
-	protected ObjectProperty<Object> presenterProperty;
-	protected FXMLLoader fxmlLoader;
-	protected ResourceBundle bundle;
+	private ObjectProperty<Object> presenterProperty;
+	private FXMLLoader fxmlLoader;
+	private ResourceBundle bundle;
 
-	protected URL resource;
+	private URL resource;
 
 	private ApplicationContext applicationContext;
+
+	public AbstractFxmlView() {
+
+		this.presenterProperty = new SimpleObjectProperty<>();
+		this.resource = getClass().getResource(getFxmlName());
+		this.bundle = getResourceBundle(getBundleName());
+	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -67,18 +73,11 @@ public abstract class AbstractFxmlView implements ApplicationContextAware {
 		this.applicationContext = applicationContext;
 	}
 
-	public AbstractFxmlView() {
-
-		this.presenterProperty = new SimpleObjectProperty<>();
-		this.resource = getClass().getResource(getFxmlName());
-		this.bundle = getResourceBundle(getBundleName());
-	}
-
 	private Object createControllerForType(Class<?> type) {
 		return this.applicationContext.getBean(type);
 	}
 
-	FXMLLoader loadSynchronously(URL resource, ResourceBundle bundle) throws IllegalStateException {
+	private FXMLLoader loadSynchronously(URL resource, ResourceBundle bundle) throws IllegalStateException {
 
 		FXMLLoader loader = new FXMLLoader(resource, bundle);
 		loader.setControllerFactory(this::createControllerForType);
@@ -92,7 +91,7 @@ public abstract class AbstractFxmlView implements ApplicationContextAware {
 		return loader;
 	}
 
-	void ensureFxmlLoaderInitialized() {
+	private void ensureFxmlLoaderInitialized() {
 
 		if (this.fxmlLoader != null) {
 			return;
@@ -113,7 +112,7 @@ public abstract class AbstractFxmlView implements ApplicationContextAware {
 		ensureFxmlLoaderInitialized();
 
 		Parent parent = fxmlLoader.getRoot();
-		addCSSIfAvailable(parent);
+		addCssIfAvailable(parent);
 		return parent;
 	}
 
@@ -142,7 +141,7 @@ public abstract class AbstractFxmlView implements ApplicationContextAware {
 		return children.listIterator().next();
 	}
 
-	void addCSSIfAvailable(Parent parent) {
+	private void addCssIfAvailable(Parent parent) {
 
 		URL uri = getClass().getResource(getStyleSheetName());
 		if (uri == null) {
