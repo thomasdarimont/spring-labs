@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="demo.projects.ui.ProjectsController">
+	<children>
+		<TableView fx:id="projectsTable" prefHeight="169.0"
+			prefWidth="599.0">
+			<columns>
+				<TableColumn fx:id="projectNameColumn" prefWidth="75.0"
+					text="%projectNameColumn.caption" />
+				<TableColumn fx:id="projectDescriptionColumn" prefWidth="117.0"
+					text="%projectDescriptionColumn.caption" />
+			</columns>
+		</TableView>
+		<TableView fx:id="tasksTable" editable="true" prefHeight="250.0"
+			prefWidth="600.0" tableMenuButtonVisible="true">
+			<columns>
+				<TableColumn fx:id="taskNameColumn" prefWidth="75.0"
+					text="%taskNameColumn.caption" />
+				<TableColumn fx:id="taskDescriptionColumn" prefWidth="75.0"
+					text="%taskDescriptionColumn.caption" />
+				<TableColumn fx:id="taskStatusColumn" prefWidth="75.0"
+					text="%taskStatusColumn.caption" />
+			</columns>
+		</TableView>
+	</children>
+</VBox>
