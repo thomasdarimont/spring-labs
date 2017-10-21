@@ -21,5 +21,5 @@ import de.felixroske.jfxsupport.FXMLView;
 /**
  * @author Thomas Darimont
  */
-@FXMLView(bundle="demo/projects/ui/projects")
+@FXMLView(bundle="demo.projects.ui.projects")
 public class ProjectsView  extends AbstractFxmlView {}
